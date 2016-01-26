@@ -1,0 +1,24 @@
+{
+  "name": "trello",
+  "version": "0.0.1",
+  "description": "A Task manager like Trello",
+  "main": "app/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/murilomothsin/trello.git"
+  },
+  "keywords": [
+    "trello",
+    "task",
+    "todo"
+  ],
+  "author": "Murilo Mothsin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/murilomothsin/trello/issues"
+  },
+  "homepage": "https://github.com/murilomothsin/trello"
+}
