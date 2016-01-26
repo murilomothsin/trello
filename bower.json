@@ -1,0 +1,26 @@
+{
+  "name": "trello",
+  "description": "A Task manager like Trello",
+  "main": "app/index.html",
+  "authors": [
+    "Murilo Mothsin"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "trello",
+    "task",
+    "todo"
+  ],
+  "homepage": "https://github.com/murilomothsin/trello",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.9"
+  }
+}
