@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" ng-app="trello">
+<head>
+  <meta charset="utf-8">
+  <title>Trello</title>
+
+  <script src="../vendor/angular/angular.js"></script>
+  <script src="app.js"></script>
+  <script src="controllers/tasks_controller.js"></script>
+</head>
+
+<body>
+  <h1>Trello</h1>
+
+  <div class="container" ng-controller="TasksController">
+    <div>
+      <label for="task"></label>
+      <input type="text" name="task" id="task" ng-model="task.message">
+      <button ng-click="Add()">Add</button>
+    </div>
+    <div class="list">
+      <ul>
+        <li ng-repeat="task in tasks">{{task.message}}</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
