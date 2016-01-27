@@ -1,1 +1,1 @@
-var app = angular.module( "trello", [] );
+var app = angular.module( "trello", ["firebase"] );
