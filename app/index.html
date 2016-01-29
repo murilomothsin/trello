@@ -5,7 +5,11 @@
   <title>Trello</title>
 
   <script src="../vendor/angular/angular.js"></script>
+  <script src="../vendor/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="app.js"></script>
+  <script src="routes.js"></script>
+  <script src="controllers/home_controller.js"></script>
+  <script src="controllers/projects_controller.js"></script>
   <script src="controllers/tasks_controller.js"></script>
   <!-- Firebase -->
   <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
@@ -14,21 +18,6 @@
 </head>
 
 <body>
-  <h1>Trello</h1>
-
-  <div class="container" ng-controller="TasksController">
-    <div>
-      <label for="task"></label>
-      <input type="text" name="task" id="task" ng-model="task.message">
-      <button ng-click="Add()">Add</button>
-    </div>
-    <div class="list">
-      <ul>
-        <li ng-repeat="task in tasks">{{task.message}}</li>
-      </ul>
-    </div>
-  </div>
-  <br>
-  {{data}}
+  <div ui-view="container"></div>
 </body>
 </html>

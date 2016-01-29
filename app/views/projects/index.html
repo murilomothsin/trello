@@ -1,0 +1,19 @@
+<h3>Projects</h3>
+
+<div>
+  <label for="Project">Project</label>
+  <input type="text" name="Project" id="Project" ng-model="Project.name">
+  <button ng-click="Add()">Add Project</button>
+</div>
+
+
+<table>
+  <th>
+    <td>name</td>
+    <td> </td>
+  </th>
+  <tr ng-repeat="project in projects">
+    <td>{{project.name}}</td>
+    <td><a ui-sref="project({id: project.id})">Enter</a></td>
+  </tr>
+</table>

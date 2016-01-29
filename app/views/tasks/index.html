@@ -1,0 +1,17 @@
+
+<div>
+  <label for="board"></label>
+  <input type="text" name="board" id="board" ng-model="board.name">
+  <button ng-click="AddBoard()">Add Board</button>
+</div>
+
+<div>
+  <label for="task"></label>
+  <input type="text" name="task" id="task" ng-model="task.message">
+  <button ng-click="Add()">Add</button>
+</div>
+<div class="list">
+  <ul>
+    <li ng-repeat="task in tasks">{{task.message}}</li>
+  </ul>
+</div>
