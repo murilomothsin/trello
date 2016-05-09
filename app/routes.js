@@ -28,14 +28,40 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       },
       resolve: {
-        // controller will not be loaded until $waitForAuth resolves
-        // Auth refers to our $firebaseAuth wrapper in the example above
-        "currentAuth": ["Auth", function(Auth) {
-          // $waitForAuth returns a promise so the resolve waits for it to complete
-          return Auth.$waitForAuth();
-        }]
+        "currentAuth": ["Auth", function(Auth) { return Auth.$waitForAuth(); }]
       }
-
+    })
+    .state('login', {
+      url: "/login",
+      views: {
+        "container@": {
+          controller: "HomeController",
+          templateUrl: "views/home/login.html"
+        },
+        "nav@": {
+          controller: "HomeController",
+          templateUrl: "views/navbar.html"
+        }
+      },
+      resolve: {
+        "currentAuth": ["Auth", function(Auth) { return Auth.$waitForAuth(); }]
+      }
+    })
+    .state('register', {
+      url: "/register",
+      views: {
+        "container@": {
+          controller: "HomeController",
+          templateUrl: "views/home/register.html"
+        },
+        "nav@": {
+          controller: "HomeController",
+          templateUrl: "views/navbar.html"
+        }
+      },
+      resolve: {
+        "currentAuth": ["Auth", function(Auth) { return Auth.$waitForAuth(); }]
+      }
     })
     .state('projects', {
       url: "/projects",
@@ -43,6 +69,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         "container@": {
           controller: "ProjectsController",
           templateUrl: "views/projects/index.html"
+        },
+        "nav@": {
+          controller: "HomeController",
+          templateUrl: "views/navbar.html"
         }
       },
       resolve: {
@@ -51,6 +81,53 @@ app.config(function($stateProvider, $urlRouterProvider) {
         "currentAuth": ["Auth", function(Auth) {
           // $requireAuth returns a promise so the resolve waits for it to complete
           // If the promise is rejected, it will throw a $stateChangeError (see above)
+          return true;
+          return Auth.$requireAuth();
+        }]
+      }
+    })
+    .state('projects-new', {
+      url: "/projects/new",
+      views: {
+        "container@": {
+          controller: "NewProjectController",
+          templateUrl: "views/projects/form.html"
+        },
+        "nav@": {
+          controller: "HomeController",
+          templateUrl: "views/navbar.html"
+        }
+      },
+      resolve: {
+        // controller will not be loaded until $requireAuth resolves
+        // Auth refers to our $firebaseAuth wrapper in the example above
+        "currentAuth": ["Auth", function(Auth) {
+          // $requireAuth returns a promise so the resolve waits for it to complete
+          // If the promise is rejected, it will throw a $stateChangeError (see above)
+          return true;
+          return Auth.$requireAuth();
+        }]
+      }
+    })
+    .state('projects-edit', {
+      url: "/projects/{id:int}/edit",
+      views: {
+        "container@": {
+          controller: "EditProjectController",
+          templateUrl: "views/projects/edit.html"
+        },
+        "nav@": {
+          controller: "HomeController",
+          templateUrl: "views/navbar.html"
+        }
+      },
+      resolve: {
+        // controller will not be loaded until $requireAuth resolves
+        // Auth refers to our $firebaseAuth wrapper in the example above
+        "currentAuth": ["Auth", function(Auth) {
+          // $requireAuth returns a promise so the resolve waits for it to complete
+          // If the promise is rejected, it will throw a $stateChangeError (see above)
+          return true;
           return Auth.$requireAuth();
         }]
       }
@@ -61,6 +138,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         "container@": {
           controller: "TasksController",
           templateUrl: "views/tasks/index.html"
+        },
+        "nav@": {
+          controller: "HomeController",
+          templateUrl: "views/navbar.html"
         }
       },
       resolve: {

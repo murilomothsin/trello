@@ -1,0 +1,45 @@
+<h3>Projeto {{project.name}}</h3>
+
+<div class="row">
+  
+  <div ng-repeat="board in boards" class="col-md-3 panel panel-default">
+    <div class="panel-heading">
+      {{board.name}}
+    </div>
+    <table class="table">
+      <tr ng-repeat="task in board.tasks">
+        <td width="10%">
+        <input type="checkbox" ng-model="task.complete"></input>
+        </td>
+        <td width="90%">{{task.name}}</td>
+      </tr>
+    </table>
+    <table class="table">
+      <tr>
+        <td>
+          <tr-input label="" name="task" model="taskName" placeholder="Nome da tarefa"></tr-input>
+        </td>
+        <td>
+          <button class="btn btn-success" ng-click="addTask(board, taskName); taskName = '';">Adicionar</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+<style type="text/css">
+  .asd{
+      width: auto;
+      background-color: blue;
+      border: 1px solid #bed5cd;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+      display: inline-block;
+  }
+  .qwe{
+    display: inline-block;
+    vertical-align: middle;
+  }
+</style>

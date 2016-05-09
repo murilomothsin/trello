@@ -1,0 +1,455 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"a",
+				"crosshair"
+			],
+			[
+				"p",
+				"progress"
+			],
+			[
+				"back",
+				"background-color"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/app.js",
+			"settings":
+			{
+				"buffer_size": 81,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/routes.js",
+			"settings":
+			{
+				"buffer_size": 4926,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/projects/index.html",
+			"settings":
+			{
+				"buffer_size": 504,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/projects/form.html",
+			"settings":
+			{
+				"buffer_size": 428,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/projects/edit.html",
+			"settings":
+			{
+				"buffer_size": 376,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "/*\nRESTRICT\nA => attribute\nE => element\nC => class\nM => comment\n\nSCOPE\n@ => text binding / one way binding\n= => model binding / two way binding\n& => callbacks / method binding\n*/\napp.directive('trInput', function() {\n  return {\n    restrict: 'E',\n    replace: true,\n    templateUrl: 'directives/tr_input_directive.html',\n    scope: {\n      name: \"@\",\n      model: \"=\",\n      placeholder: \"@\",\n      type: \"@\"\n    },\n    controller: function($scope){\n      \n      $scope.capitalLetter = function(str){\n        return str.charAt(0).toUpperCase() + str.slice(1);\n      }\n    }\n  };\n});",
+			"file": "app/directives/tr_input_directive.js",
+			"file_size": 575,
+			"file_write_time": 131060035245188236,
+			"settings":
+			{
+				"buffer_size": 582,
+				"line_ending": "Unix",
+				"name": "/*"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/murilo/Projects/javascript/trello",
+		"/home/murilo/Projects/javascript/trello/app",
+		"/home/murilo/Projects/javascript/trello/app/views",
+		"/home/murilo/Projects/javascript/trello/app/views/projects"
+	],
+	"file_history":
+	[
+		"/home/murilo/Projects/javascript/trello/app/directives/tr_input_directive.html",
+		"/home/murilo/Projects/javascript/trello/app/controllers/projects_controller.js",
+		"/home/murilo/Projects/javascript/trello/app/index.html",
+		"/home/murilo/Projects/javascript/trello/app/views/home/login.html",
+		"/home/murilo/Projects/javascript/trello/app/views/home/register.html",
+		"/home/murilo/Projects/javascript/trello/app/css/style.css",
+		"/home/murilo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/murilo/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/var/www/html/portal-scopi/.htaccess",
+		"/var/www/html/portal-scopi/index.html",
+		"/var/www/html/fotoboth/app/Controller/PagesController.php",
+		"/var/www/html/fotoboth/app/Controller/WelcomesController.php",
+		"/var/www/html/fotoboth/app/View/Layouts/default.ctp",
+		"/var/www/html/fotoboth/app/View/Pages/admin_add.ctp",
+		"/var/www/html/fotoboth/app/Model/Page.php",
+		"/var/www/html/fotoboth/app/View/Welcome/contato.ctp",
+		"/var/www/html/fotoboth/app/Config/bootstrap.php",
+		"/var/www/html/fotoboth/app/Controller/AppController.php",
+		"/var/www/html/fotoboth/app/Plugin/Migrations/webroot/js/tiny_mce/tiny_mce.js",
+		"/var/www/html/fotoboth/app/View/Welcome/pages.ctp",
+		"/var/www/html/fotoboth/app/Controller/AlbumsController.php",
+		"/var/www/html/fotoboth/app/View/Videos/admin_edit.ctp",
+		"/var/www/html/fotoboth/app/View/Pages/admin_index.ctp",
+		"/var/www/html/fotoboth/app/Config/routes.php",
+		"/var/www/html/fotoboth/app/View/Pages/admin_edit.ctp",
+		"/var/www/html/fotoboth/banco.sql",
+		"/var/www/html/fotoboth/app/View/Helper/LinkHelper.php",
+		"/var/www/html/fotoboth/app/View/Albums/admin_add.ctp",
+		"/var/www/html/fotoboth/app/Controller/CategoriesController.php"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/var/www/html/fotoboth/app",
+			"/var/www/html/fotoboth",
+			"/var/www/html/fotoboth/app"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"}}\">",
+			"svn",
+			"@fotoboth.com.br",
+			"Page",
+			"album",
+			"makeLink()",
+			"makelink"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 81,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								64,
+								64
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/routes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4926,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3401,
+								3401
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1747.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/projects/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 504,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								496,
+								496
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/views/projects/form.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 428,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								28,
+								28
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/views/projects/edit.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 376,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								195,
+								195
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/directives/tr_input_directive.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 582,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								582,
+								582
+							]
+						],
+						"settings":
+						{
+							"auto_name": "/*",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "trello.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Projects/rails/scopi/scopi.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 281.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

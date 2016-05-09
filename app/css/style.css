@@ -1,0 +1,13 @@
+.project-display{
+  padding: 0px;
+  margin: 5px;
+  width: 24%;
+}
+
+.project-display:hover{
+  background-color: #efefef;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}

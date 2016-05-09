@@ -1,0 +1,5 @@
+<div class="form-group">
+  <label ng-if="label" for="{{name}}">{{label | capitalLetter}}</label>
+    <textarea ng-show="type === 'textarea'" class="form-control" id="{{name}}" placeholder="{{placeholder}}" ng-model="model"></textarea>
+    <input type="text" ng-hide="type === 'textarea'" class="form-control" id="{{name}}" placeholder="{{placeholder}}" ng-model="model">
+</div>

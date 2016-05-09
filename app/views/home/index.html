@@ -1,16 +1,12 @@
-<h1>Trello</h1>
 
-<h3>We'll organize your workflow!</h3>
 
-{{isAuth}}
+<div class="well well-lg">
+  <h1>Trello</h1>
 
-<div ng-hide="isAuth">
-  <form class="form-signin" role="form" ng-submit="SignIn($event)">
-    <input type="email" class="form-control" ng-model="user.email" placeholder="Email address" required="" autofocus=""> <br />
-    <input type="password" class="form-control" ng-model="user.password" placeholder="Password" required=""> <br />
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  </form>
+  <h3>We'll organize your workflow!</h3>
 </div>
+
+
 <br />
 <button ui-sref="projects">Projects</button>
 <button ui-sref="tasks">Tasks</button>
