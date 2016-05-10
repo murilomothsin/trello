@@ -11,3 +11,12 @@
 .cursor-pointer{
   cursor: pointer;
 }
+
+.flash-position{
+  position: fixed;
+  float: left;
+  z-index: 1001;
+  margin-left: 40%;
+  min-width: 240px;
+  margin-top: 10px;
+}

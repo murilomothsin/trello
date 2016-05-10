@@ -1,17 +1,17 @@
-app.controller("HomeController", function( $scope, $state, $firebaseAuth, Auth, currentAuth ) {
+app.controller("HomeController", function( $scope, $state, UserService, currentAuth, Flash ) {
 
   $scope.user = {};
   $scope.isAuth = currentAuth !== null;
 
   $scope.Register = function() {
-    Auth.$createUser($scope.user).then(function(userData) {
-      console.log("User " + userData.uid + " created successfully!");
-
-      return Auth.$authWithPassword($scope.user);
-    }).then(function(authData) {
-      console.log("Logged in as:", authData.uid);
-      $state.go('projects');
+    console.log($scope.user);
+    UserService.register($scope.user).then(function(userData) {
+      console.log(userData);
+      var id = Flash.create('success', "Usuário registrado!", 3000, {class: 'flash-position'});
+      if(userData.status === 200)
+        $state.go('login');
     }).catch(function(error) {
+      var id = Flash.create('danger', "Erro: "+error+"!", 0, {class: 'flash-position'});
       console.error("Error: ", error);
     });
   };
