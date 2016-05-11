@@ -110,7 +110,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     })
     .state('projects-edit', {
-      url: "/projects/{id:int}/edit",
+      url: "/projects/{id:string}/edit",
       views: {
         "container@": {
           controller: "EditProjectController",

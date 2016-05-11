@@ -1,4 +1,4 @@
-app.controller("HomeController", function( $scope, $state, UserService, currentAuth, Flash ) {
+app.controller("HomeController", function( $scope, $state, UserService, currentAuth, Flash, localStorageService ) {
 
   $scope.user = {};
   $scope.isAuth = currentAuth !== null;
@@ -18,19 +18,17 @@ app.controller("HomeController", function( $scope, $state, UserService, currentA
 
   $scope.Login = function(event) {
     event.preventDefault();
-
-    Auth.$authWithPassword($scope.user)
-        .then(function(user) {
-            // Success callback
-            console.log('Authentication successful');
-            console.log(user);
-            $state.go('projects');
-        }, function(error) {
-            // Failure callback
-            console.log('Authentication failure');
-            console.log(error);
-            $scope.errors = error;
-        });
+    UserService.login($scope.user).then(function(userData) {
+      console.log(userData);
+      if(userData.status === 200 && userData.data.token !== undefined){
+        var id = Flash.create('success', "Bem vindo!", 3000, {class: 'flash-position'});
+        localStorageService.set("token", userData.data.token);
+        $state.go('projects');
+      }
+    }).catch(function(error) {
+      var id = Flash.create('danger', "Erro: "+error+"!", 0, {class: 'flash-position'});
+      console.error("Error: ", error);
+    });
   };
 
   $scope.Logout = function() {

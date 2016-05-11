@@ -1,29 +1,37 @@
-<h3>Adicionar Projeto</h3>
+<div class="panel panel-default col-md-offset-1 col-md-10">
+  <div class="panel-body">
+    <h3>Adicionar Projeto</h3>
 
-<div class="row">
-  <div class="col-md-8">
-    <form class="form" ng-submit="save()">
-      <tr-input label="nome" name="name" model="project.name" placeholder="Nome do seu projeto"></tr-input>
-      <tr-input label="descrição" name="description" model="project.description" placeholder="Descreva seu projeto" type="textarea"></tr-input>
-      
-      <div class="col-md-12 panel panel-default">
-        <div class="panel-heading">
-          <strong>Quadros</strong>
-        </div>
-        <table class="table">
-          <tr ng-repeat="board in boards"><td>{{board.name}}</td><td></td></tr>
-          <tr>
-            <td>
-              <tr-input label="" name="board" model="boardName" placeholder="Nome do quadro"></tr-input>
-            </td>
-            <td>
-              <button class="btn btn-success" ng-click="addBoard()">Adicionar</button>
-            </td>
-          </tr>
-        </table>
+    <div class="row">
+      <div class="col-md-12">
+        <form class="form" ng-submit="save()">
+          <tr-input label="nome" name="name" model="project.name" placeholder="Nome do seu projeto"></tr-input>
+          <tr-input label="descrição" name="description" model="project.description" placeholder="Descreva seu projeto" type="textarea"></tr-input>
+          
+          <div class="col-md-12 panel panel-default">
+            <div class="panel-heading">
+              <strong>Quadros</strong>
+            </div>
+            <table class="table">
+              <tr ng-repeat="board in boards">
+                <td>{{board.name}}</td>
+                <td><a href ng-click="removeBoard($index)">Remover</a></td>
+              </tr>
+              <tr>
+                <td width="90%">
+                  <tr-input label="" name="board" model="boardName" placeholder="Nome do quadro"></tr-input>
+                </td>
+                <td width="10%">
+                  <a class="btn btn-success" ng-click="addBoard()">Adicionar</a>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Salvar Projeto</button>
+        </form>
       </div>
+    </div>
 
-      <button type="submit" class="btn btn-primary">Salvar Projeto</button>
-    </form>
   </div>
 </div>

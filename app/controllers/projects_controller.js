@@ -1,30 +1,14 @@
-app.controller("ProjectsController", function( $scope, $firebaseObject, $firebaseArray, $uibModal ) {
+app.controller("ProjectsController", function( $scope, $uibModal, ProjectService ) {
 
-  //var ref = new Firebase("https://scorching-torch-5279.firebaseio.com/projects");
-  //$scope.projects = $firebaseArray(ref);
   $scope.projects = []
 
-  for (var i = 0; i < 10; i++) {
-    $scope.projects.push({name: "Projeto "+i, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", author: "Murilo Mothsin", created_at: new Date()});
-  }
-
-  $scope.Add = function(){
-    console.log($scope.project);
-    // $scope.projects.$add($scope.project);
-    $scope.project = {};
-    modalInstance.close();
-  }
-
-  $scope.open = function (size) {
-    var modalInstance = $uibModal.open({
-      animation: true,
-      templateUrl: 'addProjectModal.html'
-    });
-  };
+  ProjectService.getAll().then(function(data){
+    $scope.projects = data.data.projects;
+  })
 
 });
 
-app.controller("NewProjectController", function( $scope ) {
+app.controller("NewProjectController", function( $scope, ProjectService ) {
 
   $scope.project = {};
   $scope.boardName = '';
@@ -32,6 +16,11 @@ app.controller("NewProjectController", function( $scope ) {
 
   $scope.save = function(){
     console.log($scope.project);
+    console.log($scope.boards);
+    $scope.project.boards = $scope.boards;
+    ProjectService.create($scope.project).then(function(project){
+      console.log(project);
+    });
     // $scope.projects.$add($scope.project);
     // $scope.project = {};
   }
@@ -41,16 +30,26 @@ app.controller("NewProjectController", function( $scope ) {
     $scope.boardName = '';
   };
 
+  $scope.removeBoard = function(index){
+    $scope.boards.splice(index, 1);
+  }
+
 });
 
-app.controller("EditProjectController", function( $scope ) {
-
-  $scope.project = {name: 'Project 1', description: 'Teste'};
+app.controller("EditProjectController", function( $scope, $stateParams, ProjectService ) {
 
   $scope.boards = [];
+  ProjectService.get($stateParams.id).then(function(data){
+    $scope.project = data.data.project;
+    data.data.project.boards.forEach(function(value, key){
+      $scope.boards.push(value);
+    });
+  });
+  //$scope.project = {name: 'Project 1', description: 'Teste'};
+
 
   for (var i = 0; i < 4; i++) {
-    $scope.boards.push({name: "Board "+i, created_at: new Date(), tasks: [{name: 'teste', complete: false}, {name: 'Tarefa', complete: true}] });
+  //  $scope.boards.push({name: "Board "+i, created_at: new Date(), tasks: [{name: 'teste', complete: false}, {name: 'Tarefa', complete: true}] });
   }
 
   $scope.addTask = function(board, text){
