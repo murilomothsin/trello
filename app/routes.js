@@ -1,22 +1,24 @@
-app.run(["$rootScope", "$state", function($rootScope, $state) {
+app.run(function($rootScope, $state, Flash, AuthService) {
   $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
-    // We can catch the error thrown when the $requireAuth promise is rejected
-    // and redirect the user back to the home page
-    if (error === "AUTH_REQUIRED") {
+    // Caso ocorra um erro na rota, esse teste garante que se for um 404 (Sem autorização) o usuário
+    // é redirecionado para o home com uma mensagem de erro.
+    if (error.status === 404) {
+      var id = Flash.create('danger', error.data.data, 0, {class: 'flash-position'});
+      AuthService.destroy_session();
       $state.go("home");
     }
   });
-}]);
+});
 
+// Configuração do ui-router
 app.config(function($stateProvider, $urlRouterProvider) {
 
-  // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("/home");
 
-  // Now set up the states
   $stateProvider
     .state('home', {
-      url: "/",
+      url: "/home",
+      need_auth: false,
       views: {
         "container@": {
           controller: "HomeController",
@@ -26,9 +28,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
           controller: "HomeController",
           templateUrl: "views/navbar.html"
         }
-      },
-      resolve: {
-        "currentAuth": ["Auth", function(Auth) { return Auth.$waitForAuth(); }]
       }
     })
     .state('login', {
@@ -42,9 +41,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
           controller: "HomeController",
           templateUrl: "views/navbar.html"
         }
-      },
-      resolve: {
-        "currentAuth": ["Auth", function(Auth) { return Auth.$waitForAuth(); }]
       }
     })
     .state('register', {
@@ -58,9 +54,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
           controller: "HomeController",
           templateUrl: "views/navbar.html"
         }
-      },
-      resolve: {
-        "currentAuth": ["Auth", function(Auth) { return Auth.$waitForAuth(); }]
       }
     })
     .state('projects', {
@@ -76,21 +69,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       },
       resolve: {
-        // controller will not be loaded until $requireAuth resolves
-        // Auth refers to our $firebaseAuth wrapper in the example above
-        "currentAuth": ["Auth", function(Auth) {
-          // $requireAuth returns a promise so the resolve waits for it to complete
-          // If the promise is rejected, it will throw a $stateChangeError (see above)
-          return true;
-          return Auth.$requireAuth();
-        }]
+        projectsList: function(ProjectService){
+          return ProjectService.getAll();
+        },
+        isLogged: function(AuthService){
+          return AuthService.is_logged();
+        }
       }
     })
     .state('projects-new', {
       url: "/projects/new",
       views: {
         "container@": {
-          controller: "NewProjectController",
+          controller: "ProjectsController",
           templateUrl: "views/projects/form.html"
         },
         "nav@": {
@@ -99,21 +90,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       },
       resolve: {
-        // controller will not be loaded until $requireAuth resolves
-        // Auth refers to our $firebaseAuth wrapper in the example above
-        "currentAuth": ["Auth", function(Auth) {
-          // $requireAuth returns a promise so the resolve waits for it to complete
-          // If the promise is rejected, it will throw a $stateChangeError (see above)
-          return true;
-          return Auth.$requireAuth();
-        }]
+        projectsList: function(ProjectService){
+          return undefined;
+        },
+        isLogged: function(AuthService){
+          return AuthService.is_logged();
+        }
       }
     })
     .state('projects-edit', {
       url: "/projects/{id:string}/edit",
       views: {
         "container@": {
-          controller: "EditProjectController",
+          controller: "ProjectsController",
           templateUrl: "views/projects/edit.html"
         },
         "nav@": {
@@ -122,14 +111,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       },
       resolve: {
-        // controller will not be loaded until $requireAuth resolves
-        // Auth refers to our $firebaseAuth wrapper in the example above
-        "currentAuth": ["Auth", function(Auth) {
-          // $requireAuth returns a promise so the resolve waits for it to complete
-          // If the promise is rejected, it will throw a $stateChangeError (see above)
-          return true;
-          return Auth.$requireAuth();
-        }]
+        projectsList: function(ProjectService){
+          return undefined;
+        },
+        isLogged: function(AuthService){
+          return AuthService.is_logged();
+        }
       }
     })
     .state('tasks', {
@@ -145,13 +132,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       },
       resolve: {
-        // controller will not be loaded until $requireAuth resolves
-        // Auth refers to our $firebaseAuth wrapper in the example above
-        "currentAuth": ["Auth", function(Auth) {
-          // $requireAuth returns a promise so the resolve waits for it to complete
-          // If the promise is rejected, it will throw a $stateChangeError (see above)
-          return Auth.$requireAuth();
-        }]
+        isLogged: function(AuthService){
+          return AuthService.is_logged();
+        }
       }
     });
 });

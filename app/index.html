@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="trello">
+<html lang="en" ng-app="TrelloModule">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
@@ -23,7 +23,7 @@
   <script src="controllers/tasks_controller.js"></script>
   <script src="directives/tr_input_directive.js"></script>
   <script src="filters/capital-letter-filter.js"></script>
-  <script src="factories/Auth.js"></script>
+  <script type="text/javascript" src="services/auth_service.js"></script>
   <script src="services/user_service.js"></script>
   <script src="services/project_service.js"></script>
   <!-- Firebase -->
@@ -35,6 +35,6 @@
 <body class="container-fluid">
   <flash-message duration="3000" show-close="true"></flash-message>
   <div ui-view="nav"></div>
-  <div ui-view="container"></div>
+  <div class="container" ui-view="container"></div>
 </body>
 </html>

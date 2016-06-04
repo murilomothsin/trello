@@ -1,43 +1,33 @@
-app.controller("HomeController", function( $scope, $state, UserService, currentAuth, Flash, localStorageService ) {
-
+app.controller("HomeController", function( $scope, $state, AuthService, UserService, Flash, localStorageService ) {
+  AuthService.is_logged().then(function(dataToken){
+    $scope.isAuth = true;
+  }, function(error){
+    $scope.isAuth = false;
+  });
   $scope.user = {};
-  $scope.isAuth = currentAuth !== null;
 
-  $scope.Register = function() {
+  $scope.Register = function(event){
     console.log($scope.user);
-    UserService.register($scope.user).then(function(userData) {
-      console.log(userData);
-      var id = Flash.create('success', "Usuário registrado!", 3000, {class: 'flash-position'});
-      if(userData.status === 200)
-        $state.go('login');
-    }).catch(function(error) {
-      var id = Flash.create('danger', "Erro: "+error+"!", 0, {class: 'flash-position'});
-      console.error("Error: ", error);
-    });
-  };
-
-  $scope.Login = function(event) {
-    event.preventDefault();
-    UserService.login($scope.user).then(function(userData) {
-      console.log(userData);
-      if(userData.status === 200 && userData.data.token !== undefined){
-        var id = Flash.create('success', "Bem vindo!", 3000, {class: 'flash-position'});
-        localStorageService.set("token", userData.data.token);
-        $state.go('projects');
-      }
-    }).catch(function(error) {
-      var id = Flash.create('danger', "Erro: "+error+"!", 0, {class: 'flash-position'});
-      console.error("Error: ", error);
-    });
-  };
-
-  $scope.Logout = function() {
-    Auth.$unauth();
-    $state.go('home');
+    UserService.register($scope.user).then(function(dataUser){
+      console.log(dataUser);
+      $state.go("login");
+    }, function(error){
+      $scope.errors = error.data.data;
+    })
   }
 
-  $scope.whoami = function(){
-    var authData = Auth.$getAuth();
-    console.log(authData);
+  $scope.Login = function(event){
+    UserService.login($scope.user).then(function(dataUser){
+      AuthService.create_session(dataUser.data.token);
+      $state.go("projects");
+      var id = Flash.create('success', "Bem vindo! ", 3000, {class: 'flash-position'});
+    }, function(error){
+      var id = Flash.create('danger', "Erro: "+error.data.data+"!", 0, {class: 'flash-position'});
+    })
+  }
+
+  $scope.Logout = function() {
+    AuthService.destroy_session();
+    $state.go('home');
   }
 });

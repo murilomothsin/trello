@@ -1,1 +1,1 @@
-var app = angular.module( "trello", ["ui.router", "ui.bootstrap", "firebase", "ngFlash", "LocalStorageModule"] );
+var app = angular.module("TrelloModule", ["ui.router", "ui.bootstrap", "ngFlash", "LocalStorageModule"]);

@@ -5,6 +5,7 @@
       <input type="teste" class="form-control" ng-model="user.name" placeholder="Nome" required="" autofocus=""> <br />
       <input type="email" class="form-control" ng-model="user.email" placeholder="Email" required="" autofocus=""> <br />
       <input type="password" class="form-control" ng-model="user.password" placeholder="Senha" required=""> <br />
+      <div class="text-danger text-center" ng-show="errors">{{errors}}</div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
     </form>
   </div>

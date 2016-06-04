@@ -21,3 +21,11 @@
   min-width: 240px;
   margin-top: 10px;
 }
+
+.text-banner {
+  padding-top: 50px;
+}
+.buttons-banner {
+  padding: 30px;
+  margin-top: 50px;
+}
