@@ -15,13 +15,15 @@
             <table class="table">
               <tr ng-repeat="board in boards">
                 <td>{{board.name}}</td>
-                <td><a href ng-click="removeBoard($index)">Remover</a></td>
+                <td>
+                  <i class="fa fa-trash-o cursor-pointer pull-right" ng-click="removeBoard($index)" aria-hidden="true"></i>
+                </td>
               </tr>
               <tr>
-                <td width="90%">
+                <td width="98%">
                   <tr-input label="" name="board" model="boardName" placeholder="Nome do quadro"></tr-input>
                 </td>
-                <td width="10%">
+                <td width="2%">
                   <a class="btn btn-success" ng-click="addBoard()">Adicionar</a>
                 </td>
               </tr>

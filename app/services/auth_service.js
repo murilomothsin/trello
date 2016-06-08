@@ -4,9 +4,9 @@ app.service("AuthService", function(localStorageService, $http){
 		localStorageService.set("token", token);
 	}
 
-  this.destroy_session = function(){
-    localStorageService.clearAll();
-  }
+	this.destroy_session = function(){
+		localStorageService.clearAll();
+	}
 
 	this.is_logged = function(){
 		var token = localStorageService.get("token");

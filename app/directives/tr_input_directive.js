@@ -4,7 +4,6 @@ A => attribute
 E => element
 C => class
 M => comment
-
 SCOPE
 @ => text binding / one way binding
 = => model binding / two way binding

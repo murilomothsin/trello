@@ -1,19 +1,46 @@
 <button ng-click="save()" class="btn btn-primary pull-right">Salvar Projeto</button>
-<h3>{{project.name}}</h3>
+<h3 ng-hide="changeProject">
+  <span>
+    {{project.name}}
+    <small ng-init="changeProject = false" ng-click="changeProject = true;" class="cursor-pointer"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></small>
+  </span>
+</h3>
+<div ng-show="changeProject">
+  <tr-input label="nome" name="name" model="project.name" placeholder="Nome do seu projeto"></tr-input>
+  <tr-input label="descrição" name="description" model="project.description" placeholder="Descreva seu projeto" type="textarea"></tr-input>
+  <a ng-click="changeProject = false;" class="btn btn-success">Feito!</a>
+</div>
 <hr>
 
-<div class="row">
+<div class="row" >
   
-  <div ng-repeat="board in boards" class="col-md-3 panel panel-default">
-    <div class="panel-heading">
-      {{board.name}}
+  <div ng-hide="board.deleted" ng-repeat="board in boards" class="col-md-3 panel panel-default" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
+    <div class="panel-heading" >
+      <div ng-hide="changeBoard">
+        <span class="cursor-move" ng-drag="true" ng-drag-data="board"><i class="fa fa-bars" aria-hidden="true"></i></span>
+        <span ng-init="changeBoard = false;" ng-click="changeBoard = true">{{board.name}}</span>
+        <span class="pull-right cursor-pointer" ng-click="removeBoard($index);">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </span>
+      </div>
+      <div ng-show="changeBoard">
+        <tr-input label="" name="board" model="board.name" placeholder="Nome do quadro"></tr-input>
+        <a ng-click="changeBoard = false" class="btn btn-success">Feito!</a>
+      </div>
     </div>
     <table class="table">
-      <tr ng-repeat="task in board.tasks">
-        <td width="10%">
-        <input type="checkbox" ng-model="task.complete"></input>
+      <tr ng-hide="task.deleted" ng-class="{'inactive': task.complete}" ng-repeat="task in board.tasks">
+        <td width="5%">
+          <input type="checkbox" ng-model="task.complete"></input>
         </td>
-        <td width="90%">{{task.name}}</td>
+        <td width="85%">
+          <span ng-init="changeTask" ng-hide="changeTask" ng-click="changeTask = true">{{task.name}}</span>
+          <span ng-show="changeTask">
+            <tr-input label="" name="task" model="task.name" placeholder="Nome da tarefa"></tr-input>
+            <a ng-click="changeTask = false;" class="btn btn-success">Feito!</a>
+          </span>
+        </td>
+        <td width="10%"><i class="fa fa-trash-o cursor-pointer" ng-click="removeTask(board, $index)" aria-hidden="true"></i></td>
       </tr>
     </table>
     <table class="table">
